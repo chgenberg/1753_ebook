@@ -48,6 +48,9 @@ app.use(cors());
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Handle favicon requests (returning 204 No Content to avoid errors if no icon file is present)
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // Serve the backup PDF file
 app.get('/e-book_weedyourskin_backup.pdf', (req, res) => {
   const filePath = path.join(__dirname, 'e-book_weedyourskin_backup.pdf');
