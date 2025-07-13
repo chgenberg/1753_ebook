@@ -55,51 +55,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Handle favicon requests (returning 204 No Content to avoid errors if no icon file is present)
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
-// Serve the backup PDF file
-app.get('/e-book_weedyourskin_backup.pdf', (req, res) => {
-  const filePath = path.join(__dirname, 'e-book_weedyourskin_backup.pdf');
-  
-  // Set proper headers for PDF streaming
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'inline; filename="e-book_weedyourskin_backup.pdf"');
-  res.setHeader('Accept-Ranges', 'bytes');
-  
-  // Enable caching
-  res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
-  
-  // Stream the file instead of loading it all at once
-  const stream = require('fs').createReadStream(filePath);
-  stream.on('error', (err) => {
-    console.error('Error streaming backup PDF:', err);
-    res.status(404).send('Backup PDF not found');
-  });
-  
-  stream.pipe(res);
-});
-
-// Serve PDF file with proper headers (legacy route)
-app.get('/pdf/:filename', (req, res) => {
-  const filename = req.params.filename;
-  
-  // Only allow the backup file
-  if (filename !== 'e-book_weedyourskin_backup.pdf') {
-    return res.status(404).send('PDF not found');
-  }
-  
-  const filePath = path.join(__dirname, filename);
-  
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'inline');
-  res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
-  
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error('Error serving PDF:', err);
-      res.status(404).send('PDF not found');
-    }
-  });
-});
-
 // Main route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
