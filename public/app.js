@@ -382,6 +382,12 @@ class EBookReader {
         this.isLoading = true;
         
         try {
+            // Force single page mode on mobile
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+                this.pageMode = 'single';
+            }
+            
             if (this.pageMode === 'double') {
                 await this.renderDoublePage();
             } else {
@@ -412,7 +418,7 @@ class EBookReader {
             return;
         }
         
-        // Remove single page mode class
+        // Remove single page mode class when not on cover or mobile
         document.querySelector('.page-container').classList.remove('single-page-mode');
         document.querySelector('.book').classList.remove('single-page');
         document.querySelector('.book').classList.remove('cover-mode');
@@ -454,7 +460,12 @@ class EBookReader {
     async renderSinglePage() {
         await this.renderPageFromCorrectDoc(this.currentPageNum, this.leftCanvas);
         this.leftPage.style.display = 'block';
+        this.leftPage.style.width = '100%';
         this.rightPage.style.display = 'none';
+        
+        // Add class for single page styling
+        document.querySelector('.page-container').classList.add('single-page-mode');
+        document.querySelector('.book').classList.add('single-page');
     }
     
     async renderPageFromCorrectDoc(pageNum, canvas) {
