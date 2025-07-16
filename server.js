@@ -22,6 +22,8 @@ if (isProduction) {
         objectSrc: ["'none'"],
         mediaSrc: ["'self'"],
         frameSrc: ["'none'"],
+        // Allow this app to be embedded as an iframe on our main site
+        frameAncestors: ["'self'", "https://www.1753skincare.com"],
         // Allow PDF.js to create a Blob-based worker
         workerSrc: ["'self'", "blob:", "https://cdnjs.cloudflare.com"],
         // Allow blob: URLs for fonts/images if needed in future
