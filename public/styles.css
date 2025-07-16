@@ -1277,56 +1277,70 @@ body {
 
 /* Logo Header */
 .logo-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: absolute;
+    top: 20px;
+    left: 20px;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.98);
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .logo-link {
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .logo-link:hover {
     transform: scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .logo {
-    height: 40px;
+    height: 50px;
     width: auto;
-    max-width: 200px;
+    max-width: 150px;
     object-fit: contain;
 }
 
-/* Adjust app container for logo header */
+/* Remove app padding since logo is now inside */
 #app {
-    padding-top: 80px; /* Add space for logo header */
+    padding-top: 0;
+    position: relative;
 }
 
 /* Hide logo in fullscreen mode */
-.fullscreen ~ .logo-header {
+.fullscreen .logo-header {
     display: none;
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .logo-header {
-        padding: 15px;
+        top: 15px;
+        left: 15px;
     }
     
     .logo {
-        height: 35px;
+        height: 40px;
+        max-width: 120px;
     }
-    
-    #app {
-        padding-top: 70px;
-    }
+} 
+
+/* Header controls */
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 } 
