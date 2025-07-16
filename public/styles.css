@@ -32,7 +32,7 @@ body {
     min-height: 100vh;
 }
 
-/* Loading Screen */
+/* Loading screen */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -43,7 +43,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 10000; /* Higher than logo header */
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -1273,4 +1273,60 @@ body {
 /* Make sure recommendations don't interfere with fullscreen mode */
 .fullscreen + .product-recommendations {
     display: none;
+} 
+
+/* Logo Header */
+.logo-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.logo-link {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+}
+
+/* Adjust app container for logo header */
+#app {
+    padding-top: 80px; /* Add space for logo header */
+}
+
+/* Hide logo in fullscreen mode */
+.fullscreen ~ .logo-header {
+    display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .logo-header {
+        padding: 15px;
+    }
+    
+    .logo {
+        height: 35px;
+    }
+    
+    #app {
+        padding-top: 70px;
+    }
 } 

@@ -737,6 +737,12 @@ class EBookReader {
             recommendations.style.display = 'none';
         }
         
+        // Hide logo header in fullscreen
+        const logoHeader = document.querySelector('.logo-header');
+        if (logoHeader) {
+            logoHeader.style.display = 'none';
+        }
+        
         // Try to enter browser fullscreen
         if (this.appContainer.requestFullscreen) {
             this.appContainer.requestFullscreen();
@@ -755,6 +761,12 @@ class EBookReader {
         const recommendations = document.querySelector('.product-recommendations');
         if (recommendations) {
             recommendations.style.display = 'block';
+        }
+        
+        // Show logo header again
+        const logoHeader = document.querySelector('.logo-header');
+        if (logoHeader) {
+            logoHeader.style.display = 'block';
         }
         
         // Exit browser fullscreen
