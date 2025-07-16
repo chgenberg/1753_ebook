@@ -592,18 +592,22 @@ body {
 /* Controls - Clean Design */
 .controls {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    bottom: 20px; /* Add some space from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100% - 40px); /* Prevent it from touching screen edges */
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border);
-    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .control-group {
@@ -825,9 +829,10 @@ body {
     
     .book-container {
         max-width: 100vw;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 120px); /* Leave space for controls */
         border-radius: 0;
         box-shadow: none;
+        margin-bottom: 0;
     }
     
     /* Force single page mode on mobile */
@@ -844,6 +849,54 @@ body {
     
     .page-container .right-page {
         display: none !important;
+    }
+    
+    /* Mobile controls adjustments */
+    .controls {
+        bottom: 10px;
+        gap: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        max-width: calc(100% - 20px);
+        border-radius: 16px;
+    }
+    
+    .control-group {
+        gap: 0.25rem;
+    }
+    
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0.5rem;
+        font-size: 16px;
+    }
+    
+    .page-info {
+        font-size: 12px;
+        padding: 0.25rem 0.5rem;
+        gap: 0.25rem;
+    }
+    
+    .zoom-level {
+        font-size: 12px;
+        min-width: 40px;
+        padding: 0.25rem;
+    }
+    
+    /* Hide less important controls on very small screens */
+    @media (max-width: 400px) {
+        #zoomResetBtn {
+            display: none;
+        }
+        
+        .controls {
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+        
+        .zoom-controls {
+            gap: 0.25rem;
+        }
     }
     
     /* Mobile single page styling */
@@ -1099,7 +1152,7 @@ body {
 /* Product Recommendations Section */
 .product-recommendations {
     background: #f8faf7;
-    padding: 80px 20px;
+    padding: 80px 20px 120px; /* Extra bottom padding for fixed controls */
     margin-top: 60px;
     position: relative;
 }
@@ -1309,6 +1362,7 @@ body {
 /* Remove app padding since logo is now inside */
 #app {
     padding-top: 0;
+    padding-bottom: 100px; /* Space for fixed controls */
     position: relative;
 }
 
