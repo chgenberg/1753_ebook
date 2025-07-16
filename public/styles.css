@@ -1095,3 +1095,182 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
 } 
+
+/* Product Recommendations Section */
+.product-recommendations {
+    background: #f8faf7;
+    padding: 80px 20px;
+    margin-top: 60px;
+    position: relative;
+}
+
+.product-recommendations::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent);
+}
+
+.recommendations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recommendations-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 60px;
+    letter-spacing: -0.02em;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 30px;
+}
+
+.product-image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    position: relative;
+    overflow: hidden;
+    /* Ojämn rund form med CSS */
+    border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+    background: #f0f4f0;
+    animation: morphShape 8s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+@keyframes morphShape {
+    0%, 100% {
+        border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+    }
+    25% {
+        border-radius: 40% 50% 40% 50% / 50% 40% 50% 40%;
+    }
+    50% {
+        border-radius: 50% 45% 50% 45% / 45% 50% 45% 50%;
+    }
+    75% {
+        border-radius: 45% 50% 45% 50% / 50% 45% 50% 45%;
+    }
+}
+
+.product-card:hover .product-image-wrapper {
+    border-radius: 50%;
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+.product-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.product-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-cta {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #10b981;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-cta {
+    color: #059669;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .product-recommendations {
+        padding: 60px 20px;
+        margin-top: 40px;
+    }
+    
+    .recommendations-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .product-image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .product-name {
+        font-size: 1.2rem;
+    }
+    
+    .product-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Make sure recommendations don't interfere with fullscreen mode */
+.fullscreen + .product-recommendations {
+    display: none;
+} 

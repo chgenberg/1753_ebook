@@ -731,6 +731,12 @@ class EBookReader {
         this.appContainer.classList.add('fullscreen');
         this.isFullscreen = true;
         
+        // Hide product recommendations in fullscreen
+        const recommendations = document.querySelector('.product-recommendations');
+        if (recommendations) {
+            recommendations.style.display = 'none';
+        }
+        
         // Try to enter browser fullscreen
         if (this.appContainer.requestFullscreen) {
             this.appContainer.requestFullscreen();
@@ -744,6 +750,12 @@ class EBookReader {
     exitFullscreen() {
         this.appContainer.classList.remove('fullscreen');
         this.isFullscreen = false;
+        
+        // Show product recommendations again
+        const recommendations = document.querySelector('.product-recommendations');
+        if (recommendations) {
+            recommendations.style.display = 'block';
+        }
         
         // Exit browser fullscreen
         if (document.exitFullscreen) {
